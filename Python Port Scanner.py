@@ -1,6 +1,9 @@
 import socket
 import argparse
 
+parser = argparse.ArgumentParser("Port Scanner", description="Write in the range (or just the singular) port(s) you would like to scan!")
+start_port = parser.add_argument("start-port")
+
 def scan_port(host, port):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(1)
@@ -12,7 +15,7 @@ def scan_port(host, port):
     else:
         return False
 
-host = input("What is the host? ")
+host = parser.add_argument("-s", "--start", type=int, default=1)
 start_port = int(input("What is the starting port? "))
 end_port = int(input("What is the end port? "))
 
